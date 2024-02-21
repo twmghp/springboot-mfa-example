@@ -1,0 +1,54 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.41")
+	}
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.2'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'io.spring.javaformat' version '0.0.41'
+	id 'checkstyle'
+}
+
+checkstyle {
+	toolVersion = "9.3"
+}
+
+		
+group = 'wm'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.j256.two-factor-auth:two-factor-auth:1.3'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.security:spring-security-crypto'
+	implementation 'commons-codec:commons-codec:1.16.1'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
